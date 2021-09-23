@@ -20,7 +20,7 @@ class PostExtraData extends MetaBoxComponent implements MetaBoxFieldsInterface
      *
      * @throws \atk4\ui\Exception
      */
-    public function init()
+    protected function init():void
     {
         parent::init();
 

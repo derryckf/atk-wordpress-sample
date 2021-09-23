@@ -11,7 +11,7 @@ use \atksample\models;
 
 class PostEventInfo extends MetaBoxComponent
 {
-    public function init()
+    protected function init():void
     {
         parent::init();
         $this->add('View')->set('The latest event:');

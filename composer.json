@@ -7,8 +7,15 @@
     }
   ],
   "require": {
-    "ibelar/atk-wordpress": "^1.1"
+    "ibelar/atk-wordpress": "dev-dev-master"
   },
+  "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/derryckf/atk-wordpress.git"
+            
+        }
+  ],   
   "config": {
     "autoloader-suffix": "atksample",
     "prepend-autoloader": false

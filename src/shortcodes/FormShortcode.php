@@ -13,7 +13,7 @@ use atkwp\components\ShortcodeComponent;
 
 class FormShortcode extends ShortcodeComponent
 {
-    public function init()
+    protected function init():void
     {
         parent::init();
 

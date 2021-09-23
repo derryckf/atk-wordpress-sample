@@ -5,7 +5,7 @@
 
 namespace atksample\dashboards;
 
-use atk4\ui\View;
+use Atk4\Ui\View;
 use atksample\models;
 use atkwp\components\DashboardComponent;
 use atkwp\models\Options;
@@ -17,7 +17,7 @@ class EventDashboard extends DashboardComponent
     public $optionModel;
     public $options;
 
-    public function init()
+    protected function init():void
     {
         parent::init();
 

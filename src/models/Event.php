@@ -6,12 +6,12 @@
 
 namespace atksample\models;
 
-use \atk4\data\Model;
+use \Atk4\Data\Model;
 
 class Event extends Model
 {
 
-	public function init()
+	protected function init():void
 	{
 		parent::init();
 
