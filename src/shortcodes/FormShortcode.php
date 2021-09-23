@@ -17,14 +17,14 @@ class FormShortcode extends ShortcodeComponent
     {
         parent::init();
 
-        $form = $this->add('Form');
-        $form->addField('email');
+        $form = \Atk4\Ui\Form::addTo($this);    
+        $form->addControl('email');
         $form->onSubmit(function ($form) {
-            if (!$form->model['email'] || empty($form->model['email'])) {
+            if (!$form->model->get('email') || empty($form->model->get('email'))) {
                 return $form->error('email', 'Please add valid email');
             }
             // implement subscribe here
-            return $form->success('Subscribed '.$form->model['email'].' to newsletter.');
+            return $form->success('Subscribed '.$form->model->get('email').' to newsletter.');
         });
     }
 }
