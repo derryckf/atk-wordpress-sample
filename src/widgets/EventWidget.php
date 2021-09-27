@@ -29,7 +29,7 @@ class EventWidget extends WidgetComponent implements WidgetInterface
     {
         $date = new \DateTime();
 
-        $m = new \atksample\models\Event($view->app->plugin->getDbConnection(), ['table' => $view->getPluginInstance()->getDbTableName('event')]);
+        $m = new \atksample\models\Event($view->getApp()->plugin->getDbConnection(), ['table' => $view->getPluginInstance()->getDbTableName('event')]);
         if ($instance['has_chk']) {
             $m->setOrder('date');
         } else {
@@ -43,13 +43,18 @@ class EventWidget extends WidgetComponent implements WidgetInterface
                 'current_year'  => $date->format('Y'),
             ]));
 
-
-        $r = $m->tryLoadAny()->setLimit($instance['event_number']);
+        $m->setLimit($instance['event_number']);
+        //$r = $m->tryLoadAny()->setLimit($instance['event_number']);
 
         $rows = 0;
         $ul = $view->add(new View(['element' => 'ul']));
-        foreach ($r as $key => $event) {
+        /*
+         foreach ($m as $key => $event) {
             $ul->add(new View(['element' => 'li', 'content' => $event['date']->format('D M d - ').$event['name']]));
+         * 
+         */
+        foreach ($m as $r) {
+            $ul->add(new View(['element' => 'li', 'content' => $r->get('date')->format('D M d - ').$r->get('name')]));
             $rows++;
         }
         if (!$rows) {
@@ -77,7 +82,16 @@ class EventWidget extends WidgetComponent implements WidgetInterface
         $title = !empty( $instance['title']) ? $instance['title'] : esc_html__('New title', 'text_domain');
         $event = $instance['event_number'];
         $chk = $instance['has_chk'];
-
+        $ti = new \atkwp\ui\WpInput(
+                [
+                    'field_name' => $this->get_field_name('title'),
+                    'field_id'   => $this->get_field_id('title'),
+                    'value'      => $title,
+                    'label'      => 'Title:',
+                ]
+            );
+        $view->add($ti);
+        /*
         $view->add(
             new WpInput(
                 [
@@ -88,6 +102,8 @@ class EventWidget extends WidgetComponent implements WidgetInterface
                 ]
             )
         );
+         * 
+         */
 
         $view->add(
             new WpInput(
